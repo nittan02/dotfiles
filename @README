@@ -1,0 +1,44 @@
+#bundle
+#   neobundle
+#
+#colors
+#   wombat256mod.vim
+#   hybrid.vim
+#   jellybeans.vim
+#   lucius.vim
+#   molokai.vim
+#   railscasts.vim
+#   rdark.vim
+#   solarized.vim
+#   twilight.vim
+#   wombat.vim
+#
+#plugin
+#   lightline.vim
+
+
+#------------------------------------
+# git
+#------------------------------------
+#--- colors
+#git clone https://github.com/w0ng/vim-hybrid                    ./vim-hybrid
+#git clone https://github.com/nanotech/jellybeans.vim            ./jellybeans.vim
+#git clone https://github.com/jonathanfilip/vim-lucius           ./vim-lucius
+#git clone https://github.com/tomasr/molokai                     ./molokai
+#git clone https://github.com/jpo/vim-railscasts-theme           ./vim-railscasts-theme 
+#git clone https://github.com/rid9/vim-rdark                     ./vim-rdark
+#git clone https://github.com/vim-scripts/Solarized              ./Solarized
+#git clone https://github.com/matthewtodd/vim-twilight           ./vim-twilight
+#git clone https://github.com/vim-scripts/Wombat                 ./Wombat
+#git clone https://github.com/michalbachowski/vim-wombat256mod   ./vim-wombat256mod
+
+#--- plugin
+#git clone https://github.com/itchyny/lightline.vim              ./lightline.vim
+
+#--- bundle
+git clone https://github.com/Shougo/neobundle.vim               ./neobundle.vim
+#git clone https://github.com/Shougo/unite.vim                   ./unite.vim
+#git clone https://github.com/Shougo/vimfiler.vim                ./vimfiler.vim
+#git clone https://github.com/Shougo/vimshell.vim                ./vimshell.vim
+#git clone https://github.com/Shougo/vimproc.vim                 ./vimproc.vim
+
