@@ -1,0 +1,322 @@
+"--------------------------------------------------------------------------
+" neobundle
+
+set nocompatible               " Be iMproved
+filetype off                   " Required!
+
+if has('vim_starting')
+  set runtimepath+=~/.vim/bundle/neobundle.vim/
+endif
+
+call neobundle#begin(expand('~/.vim/bundle/'))
+    NeoBundleLocal ~/vim_plugin
+call neobundle#end()
+
+
+" Installation check.
+if neobundle#exists_not_installed_bundles()
+  echomsg 'Not installed bundles : ' .
+        \ string(neobundle#get_not_installed_bundle_names())
+  echomsg 'Please execute ":NeoBundleInstall" command.'
+  "finish
+endif
+NeoBundleCheck
+
+filetype plugin indent on     " Required!
+"--------------------------------------------------------------------------
+
+"-------基本設定-------------------------------------------------------
+"http://qiita.com/kotashiratsuka/items/dcd1f4231385dc9c78e7
+
+"ターミナルで256色表示を使う
+set t_Co=256
+set background=dark
+
+"ColorSchemeの設定"
+"colorscheme jellybeans
+"colorscheme hybrid
+"colorscheme lucius
+"colorscheme railscasts
+"colorscheme wombat256mod
+
+let g:molokai_original=1
+"autocmd colorscheme molokai highlight Visual ctermbg=8
+colorscheme molokai
+
+"colorscheme twilight   "for gvim
+"let g:solarized_termtrans=1
+"colorscheme solarized  "for gvim
+"colorscheme rdark      "for gvim
+
+
+
+"複数ファイルの編集を可能にする
+set hidden
+
+"内容が変更されたら自動的に再読み込み
+set autoread
+
+"Swapを作るまでの時間m秒
+set updatetime=0
+
+"Unicodeで行末が変になる問題を解決
+set ambiwidth=double
+
+"バックスペースキーで行頭を削除する
+set backspace=indent,eol,start
+
+"カッコを閉じたとき対応するカッコに一時的に移動
+set nostartofline
+
+"C-X,C-Aを強制的に10進数認識させる
+set nrformats=
+"set nrformats=alpha
+
+"titleを変更しない
+set notitle
+
+"コマンドラインでTABで補完できるようにする
+"set wildchar=<C-Z>
+set wildchar=<TAB>
+
+"改行後に「Backspace」キーを押すと上行末尾の文字を1文字消す
+set backspace=2
+
+"C-vの矩形選択で行末より後ろもカーソルを置ける
+set virtualedit=block
+
+"コマンド、検索パターンを50まで保存
+set history=50
+
+"履歴に保存する各種設定
+set viminfo='100,/50,%,<1000,f50,s100,:100,c,h,!
+
+"バックアップを作成しない
+set nobackup
+
+"-------Search--------
+"インクリメンタルサーチを有効にする
+set incsearch
+
+"大文字小文字を区別しない
+set ignorecase
+
+"大文字で検索されたら対象を大文字限定にする
+set smartcase
+
+"行末まで検索したら行頭に戻る
+set wrapscan
+
+"-------Format--------
+"自動インデントを有効化する
+"set smartindent
+"set autoindent
+
+"フォーマット揃えをコメント以外有効にする
+set formatoptions-=c
+
+"括弧の対応をハイライト
+set showmatch
+
+"行頭の余白内で Tab を打ち込むと、'shiftwidth' の数だけインデントする。
+set smarttab
+
+"http://peace-pipe.blogspot.com/2006/05/vimrc-vim.html
+set tabstop=4
+set shiftwidth=4
+set expandtab
+
+set shiftround
+set nowrap
+
+"-------Look&Feel------------------------------------------------------
+"TAB,EOFなどを可視化する
+"extends:ウィンドウの幅が狭く、右に省略された文字がある場合
+"trail  :行末につづくスペース
+"eol    :行末
+set list
+"set listchars=tab:>-,extends:>>,trail:-
+set listchars=tab:>\ ,extends:<
+
+
+"全角スペースをハイライト表示
+function! ZenkakuSpace()
+    highlight ZenkakuSpace cterm=reverse ctermfg=DarkMagenta gui=reverse guifg=DarkMagenta
+endfunction
+       
+if has('syntax')
+    augroup ZenkakuSpace
+        autocmd!
+        autocmd ColorScheme       * call ZenkakuSpace()
+        autocmd VimEnter,WinEnter * match ZenkakuSpace /　/
+    augroup END
+    call ZenkakuSpace()
+endif
+
+
+
+"検索結果をハイライトする
+set hlsearch
+
+"ルーラー,行番号を表示
+set ruler
+set number
+
+"コマンドラインの高さ
+set cmdheight=2
+
+"マクロなどの途中経過を描写しない
+set lazyredraw
+
+"カーソルラインを表示する
+set cursorline
+
+"カレント列のハイライト
+"set cursorcolumn
+
+"ウインドウタイトルを設定する
+"set title
+
+"ステータスラインにコマンドを表示
+set showcmd
+
+"ステータスラインを常に表示
+set laststatus=2
+
+"ファイルナンバー表示
+set statusline=[%n]
+
+"ホスト名表示
+"set statusline+=%{matchstr(hostname(),'\\w\\+')}@
+
+"ファイル名表示
+"set statusline+=%<%F
+set statusline+=%<%f\  
+
+"変更のチェック表示
+set statusline+=%m
+
+"読み込み専用かどうか表示
+set statusline+=%r
+
+"ヘルプページなら[HELP]と表示
+set statusline+=%h
+
+"プレビューウインドウなら[Prevew]と表示
+set statusline+=%w
+
+"ファイルフォーマット表示
+set statusline+=[%{&fileformat}]
+
+"文字コード表示
+set statusline+=[%{has('multi_byte')&&\&fileencoding!=''?&fileencoding:&encoding}]
+
+"ファイルタイプ表示
+set statusline+=%y
+
+"ここからツールバー右側
+set statusline+=%=
+
+"skk.vimの状態
+set statusline+=%{exists('*SkkGetModeStr')?SkkGetModeStr():''}
+
+"文字バイト数/カラム番号
+"set statusline+=[%{col('.')-1}=ASCII=%B,HEX=%c]
+
+"現在文字列/全体列表示
+"set statusline+=[C=%c/%{col('$')-1}]
+
+"カーソルポジション
+set statusline+=[POS=%c,%l]
+
+"現在文字行/全体行表示
+"set statusline+=[L=%l/%L]
+set statusline+=[LINE=%L]
+
+"現在のファイルの文字数をカウント
+"set statusline+=[WC=%{exists('*WordCount')?WordCount():[]}]
+
+"現在行が全体行の何%目か表示
+set statusline+=[%p%%]
+
+"ファイルタイプに応じて挙動,色を変える
+syntax on
+filetype plugin on
+filetype indent off
+
+"クリップボードにコピーできるようにする
+set clipboard=unnamed,autoselect
+set guioptions+=a
+
+"wildメニューの設定
+set wildmenu
+set wildmode=longest,list,full
+
+"lightlineのcolor設定"
+let g:lightline = {
+      \ 'colorscheme': 'wombat',
+      \ }
+
+"vimのマウス操作を許可
+"set mouse=a
+
+"vimprocのためのエンコード設定
+"#set encoding=utf-8
+"#set fileencoding=euc-jp
+"#set termencoding=euc-jp
+
+"ChangeLog"
+map \ <Leader>
+let g:changelog_timeformat = "%Y-%m-%d"
+let g:changelog_username   = "shimogama"
+"default let g:changelog_new_date_format  = "%d  %u\n\n\t* %p%c\n\n"
+"default let g:changelog_new_entry_format = "\t*%c"
+let g:changelog_new_date_format  = "%d  %u\n\n    * %c\n\n"
+let g:changelog_new_entry_format = "    * %c"
+
+nnoremap <Leader><Leader>o :new ~/changelog
+
+
+"Unite"
+nnoremap [unite]    <Nop>
+nmap     <Space>u [unite]
+nnoremap <silent> [unite]b   :<C-u>Unite buffer<CR>
+
+"vimfile"
+"自動起動
+"autocmd VimEnter * VimFiler -split -simple -winwidth=30 -no-quit
+
+" [:e .]のように気軽に起動できるようにする
+let g:vimfiler_as_default_explorer = 1
+
+" セーフモードの設定(0:OFF 1;ON
+let g:vimfiler_safe_mode_by_default=1
+
+"Vimfilerで自動でカレントディレクトリを変更
+let g:vimfiler_enable_auto_cd = 1
+
+"netrwは常にtree view
+let g:netrw_liststyle = 3
+
+"'v'でファイルを開くときは右側に開く。(デフォルトが左側なので入れ替え)
+let g:netrw_altv = 1
+
+"'o'でファイルを開くときは下側に開く。(デフォルトが上側なので入れ替え)
+let g:netrw_alto = 1
+
+"'v'や'o'で開かれる新しいウィンドウのサイズを指定する
+let g:netrw_winsize = 80
+
+" submode.vim
+" http://d.hatena.ne.jp/thinca/20130131/1359567419
+" ウィンドウサイズの変更キーを簡易化する
+" [C-w],[+]または、[C-w],[-]
+call submode#enter_with('winsize', 'n', '', '<C-w>>', '<C-w>>')
+call submode#enter_with('winsize', 'n', '', '<C-w><', '<C-w><')
+call submode#enter_with('winsize', 'n', '', '<C-w>+', '<C-w>+')
+call submode#enter_with('winsize', 'n', '', '<C-w>-', '<C-w>-')
+call submode#map('winsize', 'n', '', '>', '<C-w>>')
+call submode#map('winsize', 'n', '', '<', '<C-w><')
+call submode#map('winsize', 'n', '', '+', '<C-w>+')
+call submode#map('winsize', 'n', '', '-', '<C-w>-')
+
