@@ -24,7 +24,6 @@ NeoBundleCheck
 
 filetype plugin indent on     " Required!
 "--------------------------------------------------------------------------
-"ファイルタイプに応じて挙動,色を変える
 syntax on
 filetype plugin on
 filetype indent off
@@ -40,19 +39,17 @@ let g:jellybeans_overrides = {
 \              'attr': 'bold' },
 \}
 
-set number		"行番号の表示(非表示はnonumber)
-"set autoindent		"自動インデント
-set tabstop=4		"Tabキー(インデント)のスペース幅
+set number
+"set autoindent
+set tabstop=4
 set autoindent
 set expandtab
 set shiftwidth=4
-set showmatch		"括弧が閉じられたときに対応する括弧をハイライト
-"set incsearch		"インクリメンタルサーチをON
-set cursorline		"カレント行のハイライト
-"set cursorcolumn	"カレント列のハイライト
-"set laststatus=2	"常にステータスラインを表示
+set showmatch
+"set incsearch
+set cursorline
+"set cursorcolumn
+"set laststatus=2
 set backspace=indent,eol,start
 
-
-
-"nnoremap <ESC><ESC> :nohlsearch<CR>	"ESCを2回入力で検索時のハイライトを解除
+"nnoremap <ESC><ESC> :nohlsearch<CR>
