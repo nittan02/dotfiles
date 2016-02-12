@@ -36,7 +36,7 @@ filetype plugin indent on     " Required!
 "¥Õ¥¡¥¤¥ë¥¿¥¤¥×¤Ë±þ¤¸¤ÆµóÆ°,¿§¤òÊÑ¤¨¤ë
 syntax on
 filetype plugin on
-filetype indent off
+filetype indent on
 "--------------------------------------------------------------------------
 
 " for color scheme --------------------------------------
@@ -139,6 +139,9 @@ set wildmode=longest,list,full
 
 "¿¿¿¿¿¿type, format, encoding, low¿¿¿"
 set statusline=%F%m%r%h%w\%=[TYPE=%Y]\[FORMAT=%{&ff}]\[ENC=%{&fileencoding}]\[LOW=%l/%L]
+
+noremap  <C-j> <esc>
+noremap! <C-j> <esc>
 
 nnoremap <silent><C-e> :NERDTreeToggle<CR>
 nnoremap <silent><C-t> :tabnew<CR>
