@@ -20,8 +20,7 @@ call neobundle#begin(expand('~/.vim/bundle/'))
     NeoBundleLocal ~/vim_plugin/unite.vim'
 call neobundle#end()
 
-
-" Installation check.
+ Installation check.
 if neobundle#exists_not_installed_bundles()
   echomsg 'Not installed bundles : ' .
         \ string(neobundle#get_not_installed_bundle_names())
@@ -30,12 +29,12 @@ if neobundle#exists_not_installed_bundles()
 endif
 NeoBundleCheck
 
-filetype plugin indent on     " Required!
 "--------------------------------------------------------------------------
 "ファイルタイプに応じて挙動,色を変える
+filetype plugin indent on     " Required!
 syntax on
-filetype plugin on
-filetype indent on 
+"filetype plugin on
+"filetype indent off 
 "--------------------------------------------------------------------------
 
 set t_Co=256
@@ -130,9 +129,13 @@ set wildmode=longest,list,full
 
 set mouse=a         "mouse操作の許可"
 
+"ステータスバーに表示
 "set statusline=%F%m%r%h%w\%=[TYPE=%Y]\[FORMAT=%{&ff}]\[ENC=%{&fileencoding}]\[LOW=%l/%L]
 
+noremap <C-j> <esc>
+noremap! <C-j> <esc>
 
+nnoremap <silent><C-o> :sp<CR><C-w><C-w><C-w>10-:VimShell<CR>
 nnoremap <silent><C-e> :NERDTreeToggle<CR>
 nnoremap <silent><C-t> :tabnew<CR>
 "nnoremap <ESC><ESC> :nohlsearch<CR>	"ESCを2回入力で検索時のハイライトを解除

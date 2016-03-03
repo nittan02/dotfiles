@@ -31,9 +31,8 @@ if neobundle#exists_not_installed_bundles()
 endif
 NeoBundleCheck
 
-filetype plugin indent on     " Required!
 "--------------------------------------------------------------------------
-"ファイルタイプに応じて挙動,色を変える
+filetype plugin indent on     " Required!
 syntax on
 filetype plugin on
 filetype indent on
@@ -106,18 +105,18 @@ inoremap <expr><C-y>  neocomplcache#close_popup()
 inoremap <expr><C-e>  neocomplcache#cancel_popup()
 "-----------------------------------------------------------------------------
 
-
+" ruby真真真真真
 "if !exists('g:neocomplcache_omni_patterns')
 "  let g:neocomplcache_omni_patterns = {}
 "endif
 "let g:neocomplcache_omni_patterns.ruby = '[^. *\t]\.\w*\|\h\w*::'
 
-
+set termencoding=euc-jp 
 set encoding=utf-8
 set number		"行番号の表示(非表示はnonumber)
 "set autoindent		"自動インデント
 set tabstop=2		"Tabキー(インデント)のスペース幅
-"set autoindent
+set autoindent
 set expandtab
 set shiftwidth=4
 set showmatch		"括弧が閉じられたときに対応する括弧をハイライト
@@ -143,6 +142,7 @@ set statusline=%F%m%r%h%w\%=[TYPE=%Y]\[FORMAT=%{&ff}]\[ENC=%{&fileencoding}]\[LO
 noremap  <C-j> <esc>
 noremap! <C-j> <esc>
 
+nnoremap <silent><C-o> :sp<CR><C-w><C-w><C-w>10-:VimShell<CR>
 nnoremap <silent><C-e> :NERDTreeToggle<CR>
 nnoremap <silent><C-t> :tabnew<CR>
 "nnoremap <ESC><ESC> :nohlsearch<CR>	"ESCを2回入力で検索時のハイライトを解除
